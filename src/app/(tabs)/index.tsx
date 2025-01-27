@@ -1,9 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Link } from "expo-router";
 
-export default function Index() {
+export default function IndexScreen() {
   return (
     <View style={s.container}>
-      <Text style={s.text}>Edit app/index.tsx to edit this screen.</Text>
+      <Link href="/about" style={s.text}>
+        Go to About screen
+      </Link>
     </View>
   );
 }
