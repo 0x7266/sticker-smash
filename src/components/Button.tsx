@@ -10,9 +10,12 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 type ButtonProps = TouchableOpacityProps & {
   isLoading?: boolean;
+  action: VoidFunction;
 };
+
 export default function Button({
   isLoading = false,
+  action,
   children,
   style,
   ...rest
@@ -22,6 +25,7 @@ export default function Button({
       activeOpacity={0.7}
       style={[s.buttonContainer, style]}
       disabled={isLoading}
+      onPress={action}
       {...rest}
     >
       {isLoading ? <ActivityIndicator size="small" color="#fbd" /> : children}
@@ -33,14 +37,17 @@ type ButtonIconProps = {
   icon: keyof typeof FontAwesome.glyphMap;
   size?: number;
 };
+
 function ButtonIcon({ icon, size = 24 }: ButtonIconProps) {
   return <FontAwesome name={icon} size={size} />;
 }
+
 Button.Icon = ButtonIcon;
 
 function ButtonLabel({ children, style }: TextProps) {
   return <Text style={[s.buttonLabel, style]}>{children}</Text>;
 }
+
 Button.Label = ButtonLabel;
 
 const s = StyleSheet.create({
