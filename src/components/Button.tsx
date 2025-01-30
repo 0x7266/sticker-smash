@@ -5,8 +5,10 @@ import {
   TouchableOpacity,
   TouchableOpacityProps,
   ActivityIndicator,
+  StyleProp,
+  ViewStyle,
 } from "react-native";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 type ButtonProps = TouchableOpacityProps & {
   isLoading?: boolean;
@@ -34,12 +36,13 @@ export default function Button({
 }
 
 type ButtonIconProps = {
-  icon: keyof typeof FontAwesome.glyphMap;
+  icon: keyof typeof MaterialIcons.glyphMap;
   size?: number;
+  style?: StyleProp<ViewStyle>;
 };
 
 function ButtonIcon({ icon, size = 24 }: ButtonIconProps) {
-  return <FontAwesome name={icon} size={size} />;
+  return <MaterialIcons name={icon} size={size} />;
 }
 
 Button.Icon = ButtonIcon;
